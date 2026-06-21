@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ecommerce Store</title>
+</head>
+
+<body>
+
+<div style="background:#eee;padding:15px">
+
+    <a href="/">Home</a> |
+    <a href="/cart/">Cart</a>
+
+    <span style="float:right">
+
+        {% if user.is_authenticated %}
+            Welcome {{ user.username }}
+
+            <a href="{% url 'logout' %}">
+                <button style="background:red;color:white;border:none;padding:6px 12px">
+                    Logout
+                </button>
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}">Login</a>
+            |
+            <a href="{% url 'signup' %}">Signup</a>
+
+        {% endif %}
+
+    </span>
+
+</div>
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

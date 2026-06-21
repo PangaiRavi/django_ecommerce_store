@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>{{ product.name }}</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f5f5f5;
+margin:0;
+padding:0;
+}
+
+header{
+background:#111;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.container{
+width:80%;
+margin:auto;
+margin-top:40px;
+}
+
+.product-box{
+display:flex;
+gap:40px;
+background:white;
+padding:25px;
+border-radius:6px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.product-image img{
+width:350px;
+height:350px;
+object-fit:contain;
+}
+
+.product-details{
+flex:1;
+}
+
+.product-details h1{
+margin-top:0;
+}
+
+.price{
+color:green;
+font-size:22px;
+margin:10px 0;
+}
+
+.rating{
+margin:10px 0;
+font-size:22px;
+}
+
+.star{
+color:#ccc;
+}
+
+.star.filled{
+color:gold;
+}
+
+.product-description{
+margin-top:20px;
+line-height:1.8;
+font-size:15px;
+}
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:10px 18px;
+background:#007bff;
+color:white;
+text-decoration:none;
+border-radius:4px;
+}
+
+.btn:hover{
+background:#0056b3;
+}
+
+.back-btn{
+display:inline-block;
+margin-top:20px;
+margin-left:10px;
+padding:10px 18px;
+background:#555;
+color:white;
+text-decoration:none;
+border-radius:4px;
+}
+
+.back-btn:hover{
+background:#333;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">My Store</div>
+
+<a href="{% url 'cart' %}" style="color:white;text-decoration:none;">
+Cart 🛒
+</a>
+
+</header>
+
+
+<div class="container">
+
+<div class="product-box">
+
+<div class="product-image">
+
+<img src="{{ product.image }}" alt="{{ product.name }}">
+
+</div>
+
+
+<div class="product-details">
+
+<h1>{{ product.name }}</h1>
+
+<div class="price">₹{{ product.price }}</div>
+
+
+<!-- ⭐ PRODUCT RATING -->
+
+<div class="rating">
+
+{% for i in "12345" %}
+
+{% if forloop.counter <= product.rating %}
+<span class="star filled">★</span>
+{% else %}
+<span class="star">☆</span>
+{% endif %}
+
+{% endfor %}
+
+</div>
+
+
+<h3>Description</h3>
+
+<div class="product-description">
+
+{{ product.description|linebreaks }}
+
+</div>
+
+
+<a class="btn" href="{% url 'add_to_cart' product.id %}">
+Add to Cart
+</a>
+
+<a class="back-btn" href="/">
+Back to Products
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

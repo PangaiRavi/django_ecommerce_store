@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cart</title>
+</head>
+
+<body>
+
+<h2>Your Cart</h2>
+
+<a href="/">⬅ Continue Shopping</a>
+
+<hr>
+
+{% for item in cart_items %}
+
+<p>
+
+{{ item.product.name }}  
+₹{{ item.product.price }}  
+Quantity: {{ item.quantity }}
+
+<a href="{% url 'remove_from_cart' item.id %}">Remove</a>
+
+</p>
+
+{% endfor %}
+
+<hr>
+
+<h3>Total: ₹{{ total_price }}</h3>
+
+</body>
+</html>
